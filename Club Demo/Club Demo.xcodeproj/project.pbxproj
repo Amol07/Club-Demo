@@ -25,6 +25,7 @@
 		3C88CBD423E81C27000DB01F /* CompanyListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C88CBD323E81C27000DB01F /* CompanyListProtocols.swift */; };
 		3C88CBD623E81C4F000DB01F /* CompanyListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C88CBD523E81C4F000DB01F /* CompanyListInteractor.swift */; };
 		3C88CBD823E81C62000DB01F /* CompanyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C88CBD723E81C62000DB01F /* CompanyListRouter.swift */; };
+		3C88CBDA23E826E6000DB01F /* EmployeeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C88CBD923E826E6000DB01F /* EmployeeListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		3C88CBD323E81C27000DB01F /* CompanyListProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyListProtocols.swift; sourceTree = "<group>"; };
 		3C88CBD523E81C4F000DB01F /* CompanyListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyListInteractor.swift; sourceTree = "<group>"; };
 		3C88CBD723E81C62000DB01F /* CompanyListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyListRouter.swift; sourceTree = "<group>"; };
+		3C88CBD923E826E6000DB01F /* EmployeeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +136,9 @@
 		3C88CBA223E812B6000DB01F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C88CBCC23E81A7B000DB01F /* CompanyListTableViewCell.swift */,
 				3C88CBCB23E81A7B000DB01F /* CompanyListViewController.swift */,
+				3C88CBCC23E81A7B000DB01F /* CompanyListTableViewCell.swift */,
+				3C88CBD923E826E6000DB01F /* EmployeeListTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				3C88CBC423E812B6000DB01F /* ApiClient.swift in Sources */,
 				3C88CBD623E81C4F000DB01F /* CompanyListInteractor.swift in Sources */,
 				3C88CBD223E81BE7000DB01F /* CompanyListFetcher.swift in Sources */,
+				3C88CBDA23E826E6000DB01F /* EmployeeListTableViewCell.swift in Sources */,
 				3C88CBCE23E81A7B000DB01F /* CompanyListTableViewCell.swift in Sources */,
 				3C88CBD023E81B23000DB01F /* CompanyListPresenter.swift in Sources */,
 				3C88CBCD23E81A7B000DB01F /* CompanyListViewController.swift in Sources */,

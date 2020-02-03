@@ -24,7 +24,10 @@ protocol CompanyListPresenterProtocol: AnyObject {
     var router: CompanyListRouterProtocol? { get set }
     
     func viewDidLoad()
+    func numberOfSections() -> Int
     func numberOfItemsIn(section: Int) -> Int
+    func compnayMemberAt(indexPath: IndexPath) -> Employee
+    func company(atSection section: Int) -> CompanyData
 }
 
 // Presenter to Interactor

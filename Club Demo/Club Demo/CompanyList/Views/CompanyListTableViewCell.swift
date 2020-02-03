@@ -10,12 +10,18 @@ import UIKit
 
 class CompanyListTableViewCell: UITableViewCell, Reusable {
     @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var websiteLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var companyImage: UIImageView! {
         didSet {
             self.companyImage.layer.cornerRadius = 5.0
         }
     }
-    @IBOutlet private weak var sepratorView: UIView!
+    
+    func configure(compnay: CompanyData) {
+        self.nameLabel.text = compnay.name
+        self.websiteLabel.text = compnay.website
+        self.descriptionLabel.text = compnay.about
+    }
 }

@@ -17,22 +17,20 @@ class CompanyListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tableView.estimatedRowHeight = 60
-//        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 86
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 98
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.title = "Club"
         self.presenter?.viewDidLoad()
-    }
-    
-    func setupUI() {
     }
 }
 
 extension CompanyListViewController: CompanyListViewProtocol {
     
     func loadingFinished() {
-        self.setupUI()
         self.tableView.reloadData()
-        self.indicator.stopAnimating()
+//        self.indicator.stopAnimating()
     }
     
     func failed(withError error: CustomError?) {
@@ -49,14 +47,28 @@ extension CompanyListViewController: UITableViewDataSource {
         return presenter.numberOfItemsIn(section: section)
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let presenter = self.presenter else { return 0 }
+        return presenter.numberOfSections()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = self.presenter else { return UITableViewCell() }
-        return UITableViewCell()
+        
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: EmployeeListTableViewCell.self)
+        let empData = presenter.compnayMemberAt(indexPath: indexPath)
+        cell.configure(employee: empData)
+        return cell
     }
 }
 
 extension CompanyListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let presenter = self.presenter else { return }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyListTableViewCell.reuseIdentifier) as? CompanyListTableViewCell else { return nil }
+        guard let presenter = self.presenter else { return nil }
+        let compData = presenter.company(atSection: section)
+        cell.configure(compnay: compData)
+        return cell
     }
 }
