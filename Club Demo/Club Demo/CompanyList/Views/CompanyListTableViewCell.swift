@@ -9,7 +9,12 @@
 import UIKit
 
 class CompanyListTableViewCell: UITableViewCell, Reusable {
-    @IBOutlet private weak var containerView: UIView!
+    
+    @IBOutlet private weak var containerView: UIView! {
+        didSet {
+            self.containerView.layer.cornerRadius = 5.0
+        }
+    }
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var websiteLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -19,9 +24,10 @@ class CompanyListTableViewCell: UITableViewCell, Reusable {
         }
     }
     
-    func configure(compnay: CompanyData) {
-        self.nameLabel.text = compnay.name
-        self.websiteLabel.text = compnay.website
-        self.descriptionLabel.text = compnay.about
+    func configure(withModel model: CompanyViewModel) {
+        self.nameLabel.text = model.name
+        self.websiteLabel.text = model.website
+        self.descriptionLabel.text = model.about
+        self.companyImage.setImage(with: model.logo, placeHolder: UIImageView.placeHolderImage, completed: nil)
     }
 }

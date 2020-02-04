@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CompanyListInteractor: CompanyListInteractorInputProtocol {
+class CompanyListInteractor<T: Decodable>: CompanyListInteractorInputProtocol {
     
     weak var presenter: CompanyListInteractorOutputProtocol?
     var fetcher: CompanyListFetcherInputProtocol?
@@ -19,8 +19,7 @@ class CompanyListInteractor: CompanyListInteractorInputProtocol {
 }
 
 extension CompanyListInteractor: CompanyListFetcherOutputProtocol {
-    
-    func didFetchCompanyData(response: [CompanyData]) {
+    func didFetch<T>(response: [T]) {
         self.presenter?.didFetch(response: response)
     }
     
