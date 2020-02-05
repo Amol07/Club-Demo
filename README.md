@@ -1,2 +1,2 @@
 # Club-Demo
-Demo Assignment for Spectrum Global
+Demo Assignment
