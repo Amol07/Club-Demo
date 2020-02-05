@@ -19,9 +19,11 @@ protocol FavConfigurable: FollowConfigurable {
 class EmployeeViewModel: EmployeeDataProtocol, FavConfigurable {
     
     private var employee: Employee
+    var associatedCompId: String
     
-    required init(model: Employee) {
+    required init(model: Employee, compId: String) {
         self.employee = model
+        self.associatedCompId = compId
     }
     var isFav: Bool {
         set {

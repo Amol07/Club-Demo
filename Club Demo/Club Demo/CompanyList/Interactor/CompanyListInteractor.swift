@@ -40,8 +40,12 @@ class CompanyListInteractor: CompanyListInteractorInputProtocol {
     }
     
     func update(obj: EmployeeViewModel) {
-        self.compData.forEach { company in
-            let employeeObj = company.members?.filter { employee -> Bool in
+        let compannyObj = self.compData.filter { company -> Bool in
+            company.compId == obj.associatedCompId
+        }.first
+        
+        if let compObj = compannyObj {
+            let employeeObj = compObj.members?.filter { employee -> Bool in
                 employee.empId == obj.empId
             }.first
             if let empObj = employeeObj {

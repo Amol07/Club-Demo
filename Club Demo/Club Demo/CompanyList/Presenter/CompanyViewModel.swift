@@ -21,7 +21,7 @@ class CompanyViewModel: CompanyDataProtocol, MembersModelProtocol, FollowConfigu
         self.componyData = model
         self.membersVm = [EmployeeViewModel]()
         model.members?.forEach { employee in
-            self.membersVm.append(EmployeeViewModel(model: employee))
+            self.membersVm.append(EmployeeViewModel(model: employee, compId: model.compId))
         }
     }
     
