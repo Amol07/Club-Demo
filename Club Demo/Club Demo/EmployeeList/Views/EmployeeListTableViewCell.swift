@@ -20,9 +20,10 @@ class EmployeeListTableViewCell: UITableViewCell, Reusable {
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var phoneLabel: UILabel!
     @IBOutlet private weak var favButton: UIButton!
+    @IBOutlet private weak var followButton: UIButton!
     
     private var model: EmployeeViewModel?
-    var onFavourite: ((EmployeeViewModel?) -> ())?
+    var onUpdate: ((EmployeeViewModel) -> ())?
     
     func configure(withModel model: EmployeeViewModel) {
         self.model = model
@@ -31,11 +32,28 @@ class EmployeeListTableViewCell: UITableViewCell, Reusable {
         self.emailLabel.text = "Email Id - \(model.email ?? "Not Available")"
         self.phoneLabel.text = "Contact No - \(model.phone ?? "Not Available")"
         self.favButton.setImage(model.isFav ?  #imageLiteral(resourceName: "fav") : #imageLiteral(resourceName: "unfav"), for: .normal)
+        self.followButton.setTitle(model.isFollowed ? "Unfollow" : "Follow", for: .normal)
     }
     
     @IBAction private func markFavourite(_ sender: Any) {
         self.model?.isFav = !(self.model?.isFav ?? false)
         self.favButton.setImage(self.model?.isFav ?? false ?  #imageLiteral(resourceName: "fav") : #imageLiteral(resourceName: "unfav"), for: .normal)
-        self.onFavourite?(self.model)
+        if let model = self.model {
+            self.onUpdate?(model)
+        }
+    }
+    
+    @IBAction private func markFollow(_ sender: Any) {
+        let title: String
+        if self.model?.isFollowed ?? false {
+            title = "Follow"
+        } else {
+            title = "Unfollow"
+        }
+        self.model?.isFollowed = !(self.model?.isFollowed ?? false)
+        self.followButton.setTitle(title, for: .normal)
+        if let model = self.model {
+            self.onUpdate?(model)
+        }
     }
 }

@@ -8,10 +8,10 @@
 
 import Foundation
 
-class CompanyListFetcher<T: Decodable>: CompanyListFetcherInputProtocol {
+class CompanyListFetcher: CompanyListFetcherInputProtocol {
     weak var interactor: CompanyListFetcherOutputProtocol?
     func getCompanyData() {
-        ApiClient<[T]>.makeRequest(toURL: Endpoints.Company.fetch.url) { [weak self] response, error in
+        ApiClient<[CompanyData]>.makeRequest(toURL: Endpoints.Company.fetch.url) { [weak self] response, error in
             guard let response = response else {
                 self?.interactor?.failedWith(error: error)
                 return

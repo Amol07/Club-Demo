@@ -56,8 +56,9 @@ extension EmployeeListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: EmployeeListTableViewCell.self)
         let model = presenter.items(atIndex: indexPath)
         cell.configure(withModel: model)
-        cell.onFavourite = { model in
+        cell.onUpdate = { model in
             // save model on fav click
+            presenter.followed(obj: model)
         }
         return cell
     }

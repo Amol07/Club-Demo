@@ -7,5 +7,6 @@ target 'Club Demo' do
 
   # Pods for Club Demo
     pod 'SDWebImage', '~> 5.0'
+    pod 'RealmSwift'
 
 end

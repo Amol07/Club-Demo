@@ -31,6 +31,13 @@
 		3CF9A86323E99E81005F682C /* EmployeeListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86223E99E81005F682C /* EmployeeListProtocols.swift */; };
 		3CF9A86523E99FE7005F682C /* EmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86423E99FE7005F682C /* EmployeeViewModel.swift */; };
 		3CF9A86723E9A0E0005F682C /* EmployeeListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86623E9A0E0005F682C /* EmployeeListPresenter.swift */; };
+		3CF9A86E23E9D8E9005F682C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86923E9D8E9005F682C /* DataManager.swift */; };
+		3CF9A86F23E9D8E9005F682C /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86A23E9D8E9005F682C /* RealmProvider.swift */; };
+		3CF9A87023E9D8E9005F682C /* RealmError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86B23E9D8E9005F682C /* RealmError.swift */; };
+		3CF9A87123E9D8E9005F682C /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86C23E9D8E9005F682C /* RealmDataManager.swift */; };
+		3CF9A87223E9D8E9005F682C /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A86D23E9D8E9005F682C /* BaseRepository.swift */; };
+		3CF9A87423E9D9F4005F682C /* ResponseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A87323E9D9F4005F682C /* ResponseRepository.swift */; };
+		3CF9A87623E9DAB1005F682C /* StorableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF9A87523E9DAB1005F682C /* StorableModels.swift */; };
 		D8BDF0FBC4FACCE2531F37BF /* Pods_Club_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 387251DAF966686F91593F07 /* Pods_Club_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +69,13 @@
 		3CF9A86223E99E81005F682C /* EmployeeListProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListProtocols.swift; sourceTree = "<group>"; };
 		3CF9A86423E99FE7005F682C /* EmployeeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewModel.swift; sourceTree = "<group>"; };
 		3CF9A86623E9A0E0005F682C /* EmployeeListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListPresenter.swift; sourceTree = "<group>"; };
+		3CF9A86923E9D8E9005F682C /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3CF9A86A23E9D8E9005F682C /* RealmProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
+		3CF9A86B23E9D8E9005F682C /* RealmError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmError.swift; sourceTree = "<group>"; };
+		3CF9A86C23E9D8E9005F682C /* RealmDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
+		3CF9A86D23E9D8E9005F682C /* BaseRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
+		3CF9A87323E9D9F4005F682C /* ResponseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseRepository.swift; sourceTree = "<group>"; };
+		3CF9A87523E9DAB1005F682C /* StorableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableModels.swift; sourceTree = "<group>"; };
 		82690C2B53B6778590F9EDB5 /* Pods-Club Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Club Demo.release.xcconfig"; path = "Target Support Files/Pods-Club Demo/Pods-Club Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C240A6841FAE829D8E9DD076 /* Pods-Club Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Club Demo.debug.xcconfig"; path = "Target Support Files/Pods-Club Demo/Pods-Club Demo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +162,8 @@
 			children = (
 				3C88CB9B23E812B6000DB01F /* EndPoints.swift */,
 				3C88CBC923E81802000DB01F /* CompanyData.swift */,
+				3CF9A87323E9D9F4005F682C /* ResponseRepository.swift */,
+				3CF9A87523E9DAB1005F682C /* StorableModels.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -205,6 +221,7 @@
 		3C88CBAE23E812B6000DB01F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3CF9A86823E9D8E9005F682C /* DataLayer */,
 				3C88CBAF23E812B6000DB01F /* ApiCLient */,
 				3C88CBB223E812B6000DB01F /* Extensions */,
 				3C88CBB523E812B6000DB01F /* CustomError */,
@@ -240,9 +257,9 @@
 		3CF9A84F23E99DE0005F682C /* EmployeeList */ = {
 			isa = PBXGroup;
 			children = (
+				3CF9A85223E99E43005F682C /* Views */,
 				3CF9A85623E99E43005F682C /* Presenter */,
 				3CF9A85923E99E43005F682C /* Protocols */,
-				3CF9A85223E99E43005F682C /* Views */,
 			);
 			path = EmployeeList;
 			sourceTree = "<group>";
@@ -271,6 +288,18 @@
 				3CF9A86223E99E81005F682C /* EmployeeListProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3CF9A86823E9D8E9005F682C /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3CF9A86923E9D8E9005F682C /* DataManager.swift */,
+				3CF9A86A23E9D8E9005F682C /* RealmProvider.swift */,
+				3CF9A86B23E9D8E9005F682C /* RealmError.swift */,
+				3CF9A86C23E9D8E9005F682C /* RealmDataManager.swift */,
+				3CF9A86D23E9D8E9005F682C /* BaseRepository.swift */,
+			);
+			path = DataLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,26 +418,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C88CBD423E81C27000DB01F /* CompanyListProtocols.swift in Sources */,
+				3CF9A87423E9D9F4005F682C /* ResponseRepository.swift in Sources */,
 				3C88CB8623E81196000DB01F /* AppDelegate.swift in Sources */,
 				3C88CBC423E812B6000DB01F /* ApiClient.swift in Sources */,
+				3CF9A86F23E9D8E9005F682C /* RealmProvider.swift in Sources */,
 				3C88CBD623E81C4F000DB01F /* CompanyListInteractor.swift in Sources */,
 				3C88CBD223E81BE7000DB01F /* CompanyListFetcher.swift in Sources */,
 				3C91CE8323E982C70049C384 /* CompanyViewModel.swift in Sources */,
 				3CF9A85C23E99E43005F682C /* EmployeeListViewController.swift in Sources */,
 				3C88CBCE23E81A7B000DB01F /* CompanyListTableViewCell.swift in Sources */,
+				3CF9A87123E9D8E9005F682C /* RealmDataManager.swift in Sources */,
 				3CF9A85D23E99E43005F682C /* EmployeeListTableViewCell.swift in Sources */,
 				3C88CBD023E81B23000DB01F /* CompanyListPresenter.swift in Sources */,
 				3CF9A86523E99FE7005F682C /* EmployeeViewModel.swift in Sources */,
 				3C88CBCD23E81A7B000DB01F /* CompanyListViewController.swift in Sources */,
 				3C88CBB723E812B6000DB01F /* EndPoints.swift in Sources */,
+				3CF9A87023E9D8E9005F682C /* RealmError.swift in Sources */,
 				3CF9A86723E9A0E0005F682C /* EmployeeListPresenter.swift in Sources */,
 				3C88CBCA23E81802000DB01F /* CompanyData.swift in Sources */,
 				3C88CB8823E81196000DB01F /* SceneDelegate.swift in Sources */,
 				3CF9A86323E99E81005F682C /* EmployeeListProtocols.swift in Sources */,
 				3C88CBC723E812B6000DB01F /* UIView+Ext.swift in Sources */,
 				3C88CBC823E812B6000DB01F /* CustomError.swift in Sources */,
+				3CF9A86E23E9D8E9005F682C /* DataManager.swift in Sources */,
 				3C88CBD823E81C62000DB01F /* CompanyListRouter.swift in Sources */,
+				3CF9A87223E9D8E9005F682C /* BaseRepository.swift in Sources */,
 				3C88CBC523E812B6000DB01F /* Reachability.swift in Sources */,
+				3CF9A87623E9DAB1005F682C /* StorableModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

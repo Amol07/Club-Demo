@@ -17,18 +17,31 @@ protocol FavConfigurable: FollowConfigurable {
 }
 
 class EmployeeViewModel: EmployeeDataProtocol, FavConfigurable {
-    typealias T = Employee
     
     private var employee: Employee
     
     required init(model: Employee) {
         self.employee = model
     }
-    var isFav: Bool = false
+    var isFav: Bool {
+        set {
+            self.employee.isFav = newValue
+        }
+        get {
+            self.employee.isFav
+        }
+    }
     
-    var isFollowed: Bool = false
+    var isFollowed: Bool {
+        set {
+            self.employee.isFollowed = newValue
+        }
+        get {
+            self.employee.isFollowed
+        }
+    }
     
-    var empId: String? {
+    var empId: String {
         self.employee.empId
     }
     

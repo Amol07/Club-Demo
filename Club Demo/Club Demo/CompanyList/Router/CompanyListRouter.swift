@@ -13,14 +13,14 @@ var mainStoryboard: UIStoryboard {
     return UIStoryboard(name: "Main", bundle: Bundle.main)
 }
 
-class CompanyListRouter<T: Decodable>: CompanyListRouterProtocol {
+class CompanyListRouter: CompanyListRouterProtocol {
     
     static func createCompanyListModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "CompanyListNavigationViewController")
         if let view = navController.children.first as? CompanyListViewController {
             let presenter: CompanyListPresenterProtocol & CompanyListInteractorOutputProtocol = CompanyListPresenter()
-            let interactor: CompanyListInteractorInputProtocol & CompanyListFetcherOutputProtocol = CompanyListInteractor<T>()
-            let remoteDataFetcher: CompanyListFetcherInputProtocol = CompanyListFetcher<T>()
+            let interactor: CompanyListInteractorInputProtocol & CompanyListFetcherOutputProtocol = CompanyListInteractor()
+            let remoteDataFetcher: CompanyListFetcherInputProtocol = CompanyListFetcher()
             let router: CompanyListRouterProtocol = CompanyListRouter()
             
             view.presenter = presenter
@@ -35,18 +35,19 @@ class CompanyListRouter<T: Decodable>: CompanyListRouterProtocol {
         return UIViewController()
     }
     
-    static func createEmployeeListModule(dataSource: [EmployeeViewModel]) -> UIViewController {
+    static func createEmployeeListModule(dataSource: [EmployeeViewModel], companyPresenter: CompanyListPresenter?) -> UIViewController {
         guard let view = mainStoryboard.instantiateViewController(withIdentifier: "EmployeeListViewController") as? EmployeeListViewController else {
             return UIViewController()
         }
         let presenter: EmployeeListPresenterProtocol = EmployeeListPresenter(dataSource)
         view.presenter = presenter
+        presenter.delegate = companyPresenter
         presenter.view = view
         return view
     }
     
-    func showMemberScreen(from view: CompanyListViewProtocol?, dataSource: [EmployeeViewModel]) {
-        let detailVc = CompanyListRouter.createEmployeeListModule(dataSource: dataSource)
+    func showMemberScreen(from view: CompanyListViewProtocol?, presenter: CompanyListPresenter, dataSource: [EmployeeViewModel]) {
+        let detailVc = CompanyListRouter.createEmployeeListModule(dataSource: dataSource, companyPresenter: presenter)
         if let view = view as? UIViewController {
             view.navigationController?.pushViewController(detailVc, animated: true)
         }

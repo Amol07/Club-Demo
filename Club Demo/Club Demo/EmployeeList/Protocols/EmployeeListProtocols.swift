@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol UpdateEmployeeDelegate: AnyObject {
+    func update(emp: EmployeeViewModel)
+}
+
 // Presenter to View
 protocol EmployeeListViewProtocol: AnyObject {
     var presenter: EmployeeListPresenterProtocol? { get set }
@@ -21,9 +25,11 @@ protocol EmployeeListViewProtocol: AnyObject {
 protocol EmployeeListPresenterProtocol: AnyObject {
     var view: EmployeeListViewProtocol? { get set }
     
+    var delegate: UpdateEmployeeDelegate? { get set }
     var sortSelection: Int? { get set }
     func viewDidLoad()
     func numberOfRowsIn(section: Int) -> Int
     func items(atIndex indexPath: IndexPath) -> EmployeeViewModel
     func search(searchText: String)
+    func followed(obj: EmployeeViewModel)
 }

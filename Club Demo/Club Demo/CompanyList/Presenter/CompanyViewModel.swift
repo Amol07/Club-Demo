@@ -9,44 +9,49 @@
 import Foundation
 
 protocol MembersModelProtocol {
-    var membersVm: [EmployeeViewModel]? { get }
+    var membersVm: [EmployeeViewModel] { get }
 }
 
-class CompanyViewModel: CompanyDataProtocol, MembersModelProtocol  {
+class CompanyViewModel: CompanyDataProtocol, MembersModelProtocol, FollowConfigurable  {
     
-    typealias T = CompanyData
+    private var componyData: CompanyData
+    var membersVm: [EmployeeViewModel]
     
-    private var componyData: T?
-    
-    required init(model: T) {
+    required init(model: CompanyData) {
         self.componyData = model
+        self.membersVm = [EmployeeViewModel]()
+        model.members?.forEach { employee in
+            self.membersVm.append(EmployeeViewModel(model: employee))
+        }
     }
     
-    var compId: String? {
-        return self.componyData?.compId
+    var isFollowed: Bool {
+        set {
+            self.componyData.isFollowed = newValue
+        }
+        get {
+            self.componyData.isFollowed
+        }
+    }
+    
+    var compId: String {
+        return self.componyData.compId
     }
     var name: String? {
-        return self.componyData?.name
+        return self.componyData.name
     }
     var website: String? {
-        return self.componyData?.website
+        return self.componyData.website
     }
     var logo: String? {
-        return self.componyData?.logo
+        return self.componyData.logo
     }
     var about: String? {
-        return self.componyData?.about
-    }
-    var members: [Employee]? {
-        return self.componyData?.members
+        return self.componyData.about
     }
     
-    var membersVm: [EmployeeViewModel]? {
-        var ds = [EmployeeViewModel]()
-        self.componyData?.members?.forEach { model in
-            ds.append(EmployeeViewModel(model: model))
-        }
-        return ds
+    var members: [Employee]? {
+        return self.componyData.members
     }
 }
 

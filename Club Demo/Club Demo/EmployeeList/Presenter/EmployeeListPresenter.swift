@@ -9,12 +9,13 @@
 import Foundation
 
 class EmployeeListPresenter: EmployeeListPresenterProtocol {
-    
+
     weak var view: EmployeeListViewProtocol?
+    weak var delegate: UpdateEmployeeDelegate?
     
     private var tempDataSource: [EmployeeViewModel] = []
     private var dataSource: [EmployeeViewModel] = []
-    
+        
     init(_ dataSource: [EmployeeViewModel]) {
         self.dataSource = dataSource
         self.tempDataSource = dataSource
@@ -61,11 +62,17 @@ class EmployeeListPresenter: EmployeeListPresenterProtocol {
     func search(searchText: String) {
         if searchText.isEmpty {
             self.dataSource = self.tempDataSource
+            let sortSelection = self.sortSelection
+            self.sortSelection = sortSelection
         } else {
             self.dataSource = self.tempDataSource.filter { vmodel -> Bool in
                 return vmodel.name?.first?.localizedCaseInsensitiveContains(searchText) ?? false
             }
         }
          self.view?.loadingFinished()
+    }
+    
+    func followed(obj: EmployeeViewModel) {
+        self.delegate?.update(emp: obj)
     }
 }

@@ -107,6 +107,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GO-kF-XVw">
                                                             <rect key="frame" x="340" y="10" width="44" height="30"/>
                                                             <state key="normal" title="Follow"/>
+                                                            <connections>
+                                                                <action selector="markFollow:" destination="bj8-Yu-Hcd" eventType="touchUpInside" id="ChU-7P-Gmd"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -140,6 +143,7 @@
                                             <outlet property="companyImage" destination="IAG-nR-p7J" id="9mp-Cg-Zxs"/>
                                             <outlet property="containerView" destination="QkS-Nd-vXs" id="bNS-bN-ysW"/>
                                             <outlet property="descriptionLabel" destination="Pz9-Rr-gky" id="AIn-aK-QpR"/>
+                                            <outlet property="followButton" destination="6GO-kF-XVw" id="v2B-yf-Ucd"/>
                                             <outlet property="nameLabel" destination="HvC-Jm-5dC" id="qd6-7p-e5J"/>
                                             <outlet property="websiteLabel" destination="86h-gp-MtM" id="3HI-UR-6lh"/>
                                         </connections>
@@ -291,6 +295,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVY-i3-2yP">
                                                             <rect key="frame" x="342" y="63" width="44" height="30"/>
                                                             <state key="normal" title="Follow"/>
+                                                            <connections>
+                                                                <action selector="markFollow:" destination="Gag-F3-t36" eventType="touchUpInside" id="fvZ-bC-uF6"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Age: 26" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZ2-Re-IyM">
                                                             <rect key="frame" x="8" y="31" width="55.5" height="18"/>
@@ -335,6 +342,7 @@
                                             <outlet property="containerView" destination="cj0-yC-tuw" id="yIk-Kb-0Ox"/>
                                             <outlet property="emailLabel" destination="agQ-4g-6on" id="bDe-My-PcB"/>
                                             <outlet property="favButton" destination="qY0-g3-nXj" id="H5C-S1-bM2"/>
+                                            <outlet property="followButton" destination="pVY-i3-2yP" id="M2y-Mg-v05"/>
                                             <outlet property="nameLabel" destination="Zsz-Qs-jSs" id="2qf-N5-AJA"/>
                                             <outlet property="phoneLabel" destination="a5f-a7-b5B" id="OZk-rr-CXw"/>
                                         </connections>

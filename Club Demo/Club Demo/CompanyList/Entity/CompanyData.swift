@@ -8,42 +8,31 @@
 
 import Foundation
 
-protocol PresenterConfigurable {
-    associatedtype T
-}
-
-protocol CompanyDataProtocol {
-    associatedtype T
-    var compId: String? { get }
+protocol CompanyDataProtocol: FollowConfigurable {
+    var compId: String { get }
     var name: String? { get }
     var website: String? { get }
     var logo: String? { get }
     var about: String? { get }
     var members: [Employee]? { get }
-    init(model: CompanyData)
 }
 
-protocol EmployeeDataProtocol {
-    var empId: String? { get }
+protocol EmployeeDataProtocol: FavConfigurable {
+    var empId: String { get }
     var age: Int? { get }
     var name: Name? { get }
     var email: String? { get }
     var phone: String? { get }
-    init(model: Employee)
 }
 
-class CompanyData: CompanyDataProtocol, Decodable  {
-    required init(model: CompanyData) {
-        
-    }
-    
-    typealias T = Employee
-    var compId: String?
+class CompanyData: Decodable, CompanyDataProtocol  {
+    var compId: String
     var name: String?
     var website: String?
     var logo: String?
     var about: String?
-    var members: [T]?
+    var members: [Employee]?
+    var isFollowed: Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case compId = "_id"
@@ -53,18 +42,22 @@ class CompanyData: CompanyDataProtocol, Decodable  {
         case about
         case members
     }
+    
+    required init(storable: StorableCompanyModel) {
+        self.compId = storable.id
+        self.isFollowed = storable.isFollowed
+    }
 }
 
 class Employee: Decodable, EmployeeDataProtocol {
-    required init(model: Employee) {
-        
-    }
-    
-    var empId: String?
+    var empId: String
     var age: Int?
     var name: Name?
     var email: String?
     var phone: String?
+    
+    var isFav: Bool = false
+    var isFollowed: Bool = false
     
     private enum CodingKeys: String, CodingKey {
         case empId = "_id"
@@ -73,9 +66,39 @@ class Employee: Decodable, EmployeeDataProtocol {
         case email
         case phone
     }
+    
+    required init(storable: StorableEmployeeModel) {
+        self.empId = storable.id
+        self.isFollowed = storable.isFollowed
+        self.isFav = storable.isFavourite
+    }
 }
 
 class Name: Decodable {
     var first: String?
     var last: String?
+}
+
+extension CompanyData: MappableProtocol {
+    
+    func mapToPersistenceObject() -> StorableCompanyModel {
+        let response = StorableCompanyModel(compId: self.compId, isFollowed: self.isFollowed)
+        return response
+    }
+    
+    static func mapFromPersistenceObject(_ object: StorableCompanyModel) -> Self {
+        return self.init(storable: object)
+    }
+}
+
+extension Employee: MappableProtocol {
+    
+    func mapToPersistenceObject() -> StorableEmployeeModel {
+        let response = StorableEmployeeModel(id: self.empId, isFollowed: self.isFollowed, isFav: self.isFav)
+        return response
+    }
+    
+    static func mapFromPersistenceObject(_ object: StorableEmployeeModel) -> Self {
+        return self.init(storable: object)
+    }
 }

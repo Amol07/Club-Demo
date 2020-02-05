@@ -59,6 +59,9 @@ extension CompanyListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CompanyListTableViewCell.self)
         let model = presenter.items(atIndex: indexPath)
         cell.configure(withModel: model)
+        cell.onFollow = { [weak self] obj in
+            self?.presenter?.followed(obj: obj)
+        }
         return cell
     }
 }

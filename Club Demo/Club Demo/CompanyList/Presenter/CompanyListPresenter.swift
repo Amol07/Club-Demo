@@ -49,6 +49,8 @@ class CompanyListPresenter: CompanyListPresenterProtocol {
     func search(searchText: String) {
         if searchText.isEmpty {
             self.dataSource = self.tempDataSource
+            let sortSelection = self.sortSelection
+            self.sortSelection = sortSelection
         } else {
             self.dataSource = self.tempDataSource.filter { vmodel -> Bool in
                 return vmodel.name?.localizedCaseInsensitiveContains(searchText) ?? false
@@ -59,19 +61,27 @@ class CompanyListPresenter: CompanyListPresenterProtocol {
     
     func selected(index: IndexPath) {
         let item = self.items(atIndex: index)
-        self.router?.showMemberScreen(from: self.view, dataSource: item.membersVm ?? [])
+        self.router?.showMemberScreen(from: self.view, presenter: self, dataSource: item.membersVm )
+    }
+    
+    func followed(obj: CompanyViewModel) {
+        self.interactor?.followed(obj: obj)
+    }
+}
+
+extension CompanyListPresenter: UpdateEmployeeDelegate {
+    
+    func update(emp: EmployeeViewModel) {
+        self.interactor?.update(obj: emp)
     }
 }
 
 extension CompanyListPresenter: CompanyListInteractorOutputProtocol {
     
-    func didFetch<T>(response: [T]) {
-        self.dataSource.removeAll()
-        response.forEach { model in
-            self.dataSource.append(CompanyViewModel(model: model as! CompanyViewModel.T))
-        }
-        self.tempDataSource = self.dataSource
+    func didFetch(response: [CompanyViewModel]) {
+        self.dataSource = response
         self.sortSelection = 0
+        self.tempDataSource = self.dataSource
         self.view?.loadingFinished()
     }
     

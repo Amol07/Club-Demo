@@ -29,6 +29,7 @@ protocol CompanyListPresenterProtocol: AnyObject {
     func items(atIndex indexPath: IndexPath) -> CompanyViewModel
     func search(searchText: String)
     func selected(index: IndexPath)
+    func followed(obj: CompanyViewModel)
 }
 
 // Presenter to Interactor
@@ -37,11 +38,13 @@ protocol CompanyListInteractorInputProtocol: AnyObject {
     var fetcher: CompanyListFetcherInputProtocol? { get set }
     
     func getCompanyData()
+    func followed(obj: CompanyViewModel)
+    func update(obj: EmployeeViewModel)
 }
 
 // Interactor to Presenter
 protocol CompanyListInteractorOutputProtocol: AnyObject {
-    func didFetch<T>(response: [T])
+    func didFetch(response: [CompanyViewModel])
     func failedWith(error: CustomError?)
 }
 
@@ -53,13 +56,13 @@ protocol CompanyListFetcherInputProtocol: AnyObject {
 
 // Fetcher to Interactor
 protocol CompanyListFetcherOutputProtocol: AnyObject {
-    func didFetch<T>(response: [T])
+    func didFetch(response: [CompanyData])
     func failedWith(error: CustomError?)
 }
 
 // Presenter to Router
 protocol CompanyListRouterProtocol {
     static func createCompanyListModule() -> UIViewController
-    static func createEmployeeListModule(dataSource: [EmployeeViewModel]) -> UIViewController
-    func showMemberScreen(from view: CompanyListViewProtocol?, dataSource: [EmployeeViewModel])
+    static func createEmployeeListModule(dataSource: [EmployeeViewModel], companyPresenter: CompanyListPresenter?) -> UIViewController
+    func showMemberScreen(from view: CompanyListViewProtocol?, presenter: CompanyListPresenter, dataSource: [EmployeeViewModel])
 }
