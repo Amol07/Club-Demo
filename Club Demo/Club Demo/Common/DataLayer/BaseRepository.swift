@@ -19,10 +19,6 @@ class BaseRepository<T> {
     }
     
     //MARK: - Methods
-    func fetch<T>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: ([T]) -> ()) where T : Storable {
-        self.dbManager.fetch(model, predicate: predicate, sorted: sorted, completion: completion)
-    }
-    
     func fetch<T>(_ model: T.Type, primaryKey: String) -> T? where T: Storable {
         self.dbManager.fetch(model, primaryKey: primaryKey)
     }
@@ -33,9 +29,5 @@ class BaseRepository<T> {
     
     func delete(object: Storable) throws {
         try dbManager.delete(object: object)
-    }
-    
-    func save(object: Storable) throws {
-        try self.dbManager.save(object: object)
     }
 }

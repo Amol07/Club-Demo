@@ -13,7 +13,6 @@ import RealmSwift
 protocol ResponseRepositoryProtocol {
     
     //MARK: - Methods
-    func saveResponse<T: MappableProtocol>(_ response: T)
     func updateResponse<T: MappableProtocol>(_ response: T)
     func delete<T: Storable>(_ response: T)
 }
@@ -27,10 +26,6 @@ class ResponseRepository : BaseRepository<StorableCompanyModel> {
 
 //MARK: -  ResponseRepositoryProtocol implementation
 extension ResponseRepository: ResponseRepositoryProtocol {
-    func saveResponse<T>(_ response: T) where T : MappableProtocol {
-        do { try super.save(object: response.mapToPersistenceObject()) }
-        catch { print(error.localizedDescription) }
-    }
     
     func updateResponse<T>(_ response: T) where T : MappableProtocol {
         do { try super.update(object: response.mapToPersistenceObject(), completion: {}) }

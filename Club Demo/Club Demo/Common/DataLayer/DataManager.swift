@@ -9,11 +9,6 @@
 import Foundation
 import RealmSwift
 
-struct Sorted {
-    var key: String
-    var ascending: Bool = true
-}
-
 //MARK: - Storable Protocol
 protocol Storable {
     
@@ -25,11 +20,9 @@ extension Object: Storable {
 
 //MARK: - DataManager Protocol
 protocol DataManager {
-    func save(object: Storable) throws
     func update(object: Storable, completion: @escaping () -> ()) throws
     func delete(object: Storable) throws
     func fetch<T: Storable>(_ model: T.Type, primaryKey: String) -> T?
-    func fetch<T: Storable>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: ([T]) -> ())
 }
 
 //MARK: - MappableProtocol

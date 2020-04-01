@@ -94,7 +94,7 @@ extension UIViewController {
         let actionHandler = { action  -> Void in
             handler?( controller, controller.actions.firstIndex(of: action ) ?? -1 )
         }
-        for title in buttonTitles[ 0..<buttonTitles.count ] {
+        for title in buttonTitles[0..<buttonTitles.count] {
             controller.addAction( UIAlertAction( title: title, style: .default, handler: actionHandler))
         }
         self.present(controller, animated: true, completion: nil)
